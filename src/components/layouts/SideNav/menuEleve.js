@@ -22,7 +22,7 @@ export const menuItemsDataEleve = [{
     href: '/email'
   }, {
     key: 'HR',
-    label: 'Dashboard Eleve',
+    label: 'Dashboard student',
     href: '/hr'
   }]
 }, {

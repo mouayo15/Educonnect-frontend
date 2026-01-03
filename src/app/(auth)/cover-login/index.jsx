@@ -19,14 +19,38 @@ const Index = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    
+    console.log(`🔑 LOGIN ATTEMPT: User ${email} attempting login at ${new Date().toISOString()}`);
+    
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
       const { token, user } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('userRole', user.role || 'eleve'); // Store user role
-      navigate('/index'); // or wherever the dashboard is
+      
+      console.log(`🎭 USER ROLE SET: Setting userRole to '${user.role || 'eleve'}' for user ${user.email}`);
+      
+      // Dispatch storage event to notify route changes
+      window.dispatchEvent(new StorageEvent('storage', {
+        key: 'userRole',
+        oldValue: null,
+        newValue: user.role || 'eleve',
+        storageArea: localStorage
+      }));
+      
+      // Add logging for successful login
+      console.log(`🔐 LOGIN SUCCESS: User ${user.email || email} logged in as ${user.role || 'eleve'} at ${new Date().toISOString()}`);
+      console.log('User details:', user);
+      
+      // Navigate after a short delay to ensure routes are loaded
+      console.log('⏳ NAVIGATING TO DASHBOARD: Waiting for routes to load...');
+      setTimeout(() => {
+        console.log('➡️ NAVIGATING NOW: Redirecting to /index');
+        navigate('/index');
+      }, 100);
     } catch (err) {
+      console.error('❌ LOGIN FAILED:', err.response?.data?.message || 'Login failed');
       setError(err.response?.data?.message || 'Login failed');
     } finally {
       setLoading(false);

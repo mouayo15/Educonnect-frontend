@@ -4,10 +4,18 @@ import { lazy } from 'react';
 const getRoutesByRole = () => {
   const userRole = localStorage.getItem('userRole') || 'eleve'; // default to eleve
 
+  console.log(`🔄 ROUTE LOADING: Loading routes for role '${userRole}' at ${new Date().toISOString()}`);
+
   if (userRole === 'prof') {
-    return import('./profRoutes').then(module => module.profRoutes);
+    return import('./profRoutes').then(module => {
+      console.log('✅ PROF ROUTES LOADED: Professor routes successfully loaded');
+      return module.profRoutes;
+    });
   } else {
-    return import('./eleveRoutes').then(module => module.eleveRoutes);
+    return import('./eleveRoutes').then(module => {
+      console.log('✅ ELEVE ROUTES LOADED: Student routes successfully loaded');
+      return module.eleveRoutes;
+    });
   }
 };
 
@@ -33,8 +41,8 @@ const CommingSoon = lazy(() => import('@/app/(others)/coming-soon'));
 const Maintenance = lazy(() => import('@/app/(others)/maintenance'));
 const Offline = lazy(() => import('@/app/(others)/offline'));
 
-// Export layoutsRoutes as a promise that resolves to the correct routes
-export const layoutsRoutes = getRoutesByRole();
+// Export layoutsRoutes as the function itself, not the result of calling it
+export const layoutsRoutes = getRoutesByRole;
 
 export const singlePageRoutes = [{
   path: '/cover-login',
