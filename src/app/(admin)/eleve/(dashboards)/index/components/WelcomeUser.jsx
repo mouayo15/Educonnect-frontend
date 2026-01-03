@@ -1,20 +1,19 @@
 import dashboardImg from '@/assets/images/dashboard.png';
 const WelcomeUser = () => {
-  return <div className="card-body relative overflow-hidden bg-zinc-900 rounded-md mb-5">
+  return <div className="card-body relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 rounded-md mb-5">
       <div className="relative z-10 grid grid-cols-12 items-center">
         <div className="lg:col-span-8 col-span-12">
-          <h5 className="mb-3 text-lg text-white">Welcome student 🎉</h5>
-          <p className="mb-5 text-white/70 text-sm">
-            An ecommerce dashboard has just that purpose. It provides your ecommerce team with a
-            clear overview of key financial and website KPIs at any time.
+          <h5 className="mb-3 text-lg text-white">Welcome back, Student! 🎓</h5>
+          <p className="mb-5 text-white/90 text-sm">
+            Track your academic progress, view upcoming assignments, check your grades, and stay on top of your studies with your personalized student dashboard.
           </p>
-          <button type="button" className="btn bg-primary text-white">
-            Take a Product
+          <button type="button" className="btn bg-white text-blue-600 hover:bg-blue-50">
+            View My Courses
           </button>
         </div>
 
         <div className="col-span-4 ms-auto lg:block hidden">
-          <img src={dashboardImg} alt="" className="h-40" width={160} height={160} />
+          <img src={dashboardImg} alt="" className="h-40 opacity-80" width={160} height={160} />
         </div>
       </div>
 
