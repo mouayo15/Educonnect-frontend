@@ -4,8 +4,26 @@ import logoDark from '@/assets/images/logo-dark.png';
 import logoLight from '@/assets/images/logo-light.png';
 import PageMeta from '@/components/PageMeta';
 import { LuLogOut } from 'react-icons/lu';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useEffect } from 'react';
+
 const Index = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Perform logout when component mounts
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('userRole');
+
+    // Optional: Call logout API if needed
+    // You can add an API call here to invalidate the token on the server
+  }, []);
+
+  const handleSignIn = () => {
+    navigate('/cover-login');
+  };
+
   return <>
       <PageMeta title="Logout" />
       <div className="h-screen w-full flex justify-center items-center">
@@ -20,7 +38,7 @@ const Index = () => {
         <div className="relative">
           <div className="bg-default-50 rounded-lg w-lg relative">
             <div className="text-center px-10 py-12">
-              <Link to="/index" className="flex justify-center">
+              <Link to="/cover-login" className="flex justify-center">
                 <div className="h-6 w-auto relative block dark:hidden">
                   <img src={logoDark} alt="logo dark" className="object-contain" width={111} />
                 </div>
@@ -38,9 +56,9 @@ const Index = () => {
                 </p>
               </div>
 
-              <Link to="/index">
-                <button className="btn bg-primary text-white w-full">Sign In</button>
-              </Link>
+              <button onClick={handleSignIn} className="btn bg-primary text-white w-full">
+                Sign In
+              </button>
             </div>
           </div>
         </div>

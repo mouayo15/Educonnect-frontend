@@ -24,6 +24,7 @@ const Index = () => {
       const { token, user } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('userRole', user.role || 'eleve'); // Store user role
       navigate('/index'); // or wherever the dashboard is
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');

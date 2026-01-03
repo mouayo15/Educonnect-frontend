@@ -149,7 +149,7 @@ const profileMenu = [{
 }, {
   icon: <LuLogOut className="size-4" />,
   label: 'Sign Out',
-  to: '/basic-logout'
+  to: '/cover-logout'
 }];
 const Topbar = () => {
   return <div className="app-header min-h-topbar-height flex items-center sticky top-0 z-30 bg-(--topbar-background) border-b border-default-200">
