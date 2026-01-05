@@ -50,6 +50,7 @@ const Analytics = lazy(() => import('@/app/(admin)/eleve/(dashboards)/analytics'
 const Email = lazy(() => import('@/app/(admin)/eleve/(dashboards)/email'));
 const Hr = lazy(() => import('@/app/(admin)/eleve/(dashboards)/hr'));
 const Ecommerce = lazy(() => import('@/app/(admin)/eleve/(dashboards)/index'));
+const StudentDashboard = lazy(() => import('@/components/StudentDashboard'));
 
 // layouts
 const DarkMode = lazy(() => import('@/app/(admin)/eleve/(layouts)/dark-mode'));
@@ -71,12 +72,12 @@ const Timeline = lazy(() => import('@/app/(admin)/eleve/(pages)/timeline'));
 
 export const eleveRoutes = [{
   path: '/',
-  name: 'Ecommerce',
-  element: <Ecommerce />
+  name: 'StudentDashboard',
+  element: <StudentDashboard />
 }, {
   path: '/index',
-  name: 'Ecommerce',
-  element: <Ecommerce />
+  name: 'StudentDashboard',
+  element: <StudentDashboard />
 }, {
   path: '/cart',
   name: 'Cart',
